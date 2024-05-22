@@ -8,9 +8,13 @@ from video_capture import VideoCapture
 def clear():
     print("\033[H\033[J")
 
-def main(args):
-    video_address = args.video
+def main(args,is_cam:bool):
+    
+    video_address = 0 if is_cam else args.video
     port = args.port
+    if not is_cam and video_address == "":
+        print("please provide a video address")
+        return
     
     server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     
@@ -24,7 +28,6 @@ def main(args):
     except socket.error as e:
         print(f"error occured: {e}")
         return
-    print(type(video_address))
     
     video_capture = VideoCapture(video_address)
     video_capture.start()
@@ -43,10 +46,10 @@ def main(args):
 if __name__ =="__main__":
     parser = argparse.ArgumentParser(description="this is a streaming application for streaming videos or camera feed")
     parser.add_argument("--port", type=int, default=8000, help="port number")
-    parser.add_argument("--video", type=int, default=0, help="video address")
-    
+    parser.add_argument("--video", type=str, default="", help="video address")
+    parser.add_argument("--cam",action="store_true", help="use camera feed")
     parser.add_argument("--host", type=str, default="localhost", help="host ip address")
     
     args = parser.parse_args()
-    
-    main(args)
+
+    main(args,args.cam)
