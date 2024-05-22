@@ -140,6 +140,8 @@ venv.bak/
 # mkdocs documentation
 /site
 .vscode
+*.mp4
+
 # mypy
 .mypy_cache/
 .dmypy.json
