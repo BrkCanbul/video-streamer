@@ -9,9 +9,11 @@ class VideoCapture:
         
     
     def start(self):
+        print("starting video capture")
         self.cap.open(self.video_address)
     
     def pause(self):
+        print("pausing video capture")
         self.cap.release()
     
     def get_frame(self):
@@ -23,6 +25,5 @@ class VideoCapture:
             if not ret:
                 break
             encoded, buffer = cv2.imencode('.jpg', frame, [cv2.IMWRITE_JPEG_QUALITY, 35])
-            print(len(buffer.tobytes()))
             yield buffer.tobytes() 
     

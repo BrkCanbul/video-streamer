@@ -19,19 +19,17 @@ def main(args,is_cam:bool):
     server_address = (host_ip,port)
 
 
-    try:
-        pass
-        #server.bind(server_address)
-    except socket.error as e:
-        print(f"error occured: {e}")
-        return
+    # try:
+    #     pass
+    #     #server.bind(server_address)
+    # except socket.error as e:
+    #     print(f"error occured: {e}")
+    #     return
     
     video_capture = VideoCapture(video_address)
     video_capture.start()
-    print(server.getsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST))
-
-    
-    while True:        
+    while True:
+        
         for frame in video_capture.get_frame():
             
             server.sendto(frame, server_address)
