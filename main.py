@@ -5,9 +5,6 @@ import argparse
 import sys
 from video_capture import VideoCapture
 
-def clear():
-    print("\033[H\033[J")
-
 def main(args,is_cam:bool):
     
     video_address = 0 if is_cam else args.video
@@ -32,9 +29,9 @@ def main(args,is_cam:bool):
     video_capture = VideoCapture(video_address)
     video_capture.start()
     print(server.getsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST))
-    while True:
-        #time.sleep(1)
-        
+
+    
+    while True:        
         for frame in video_capture.get_frame():
             
             server.sendto(frame, server_address)
