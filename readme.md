@@ -23,3 +23,6 @@ pip install -r requirements.txt
 ```shell
 python3 ./main --host <Host_ip=localhost> --video <video_url=0> --port <port>
 ```
+## Flowchart for program
+
+![alt text](./flowchart-video-streamer.png)
