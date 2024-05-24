@@ -17,14 +17,6 @@ def main(args,is_cam:bool):
     
     host_ip = args.host
     server_address = (host_ip,port)
-
-
-    # try:
-    #     pass
-    #     #server.bind(server_address)
-    # except socket.error as e:
-    #     print(f"error occured: {e}")
-    #     return
     
     video_capture = VideoCapture(video_address)
     video_capture.start()
